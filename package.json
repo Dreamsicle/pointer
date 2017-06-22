@@ -1,0 +1,24 @@
+{
+  "name": "pointer",
+  "version": "0.0.1",
+  "description": "Discord bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dreamsicle/pointer.git"
+  },
+  "author": "Dioxide",
+  "license": "SEE LICENSE IN README",
+  "bugs": {
+    "url": "https://github.com/Dreamsicle/pointer/issues"
+  },
+  "homepage": "https://github.com/Dreamsicle/pointer#readme",
+  "dependencies": {
+    "discord.js": "^11.1.0",
+    "npm": "^5.0.3",
+    "simple-git": "^1.73.0"
+  }
+}
