@@ -5,10 +5,10 @@ client.on('ready', () => {
 
 client.on('message', message => {
     // handle prefix
-    if (message.content.substring(0, prefix.length) !== prefix) { /* if the first two characters aren't 'g/', just ignore it */
+    if (message.content.substring(0, prefix.length) !== prefix) { /* only process messages that have the prefix */
         return
-    } else { /* if they are, */
-        message.content = message.content.substr(prefix.length) /* remove them (to keep the clutter of prefix + 'actual command' away) and carry on */
+    } else { /* if they do have it, */
+        message.content = message.content.substr(prefix.length) /* remove the prefix from the message content (to keep the clutter of prefix + 'actual command' away) and carry on */
     }
 
     if (message.content === 'ping') {
