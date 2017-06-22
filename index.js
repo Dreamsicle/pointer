@@ -29,11 +29,12 @@ fs.unlinkSync(lockFile)
 }
 console.log('Defining global variables...')
 global.Discord = require("discord.js")
-global.client = new Discord.Client({disableEveryone: true})
+global.client = new Discord.Client()
 
 console.log('Initializing config...')
 try {
     global.config = JSON.parse(fs.readFileSync('./config.json'))
+    global.prefix = config.prefix
 } catch (e) {
     console.log("We couldn't find your configuration. Please make sure that you've copied the config.json.example to config.json")
     console.log("Here's the exact error:")
@@ -41,3 +42,6 @@ try {
     console.log("Stopping...")
     process.exit()
 }
+
+console.log("Bootstrap complete.")
+console.log("Starting up...")
