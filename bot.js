@@ -43,4 +43,29 @@ client.on('message', message => {
         }
     }
 
+    if (message.content.substring(0,4) === 'kick') {
+        message.content = message.content.substr(5) // remove 'kick' and the trailing space to just get the member to be kek'd
+        if (message.member.hasPermission("KICK_MEMBERS")) {
+            try {
+                message.guild.member(message.mentions.users.first()).kick()
+                message.channel.send("", {embed: {
+                    title: 'Press F to pay respects.',
+                    color: 0x930e67
+                }})
+            } catch (e) {
+                message.channel.send("", {embed: {
+                    title: 'Something went wrong.',
+                    description: 'Please check if I have the proper permissions! If that seems to be fine, here\'s the full error: \n' + e,
+                    color: 0xc5283d
+                }})
+            }
+        } else {
+            message.channel.send("", {embed: {
+                title: "Sorry, but you don't have permission to do this.",
+                description: "Please check if you have permsission to ban members.",
+                color: 0xc5283d
+            }})
+        }
+    }
+
 })
