@@ -1,4 +1,4 @@
-console.log('Getting updates..')
+console.log('Checking for updates...')
 
 // git pull
 require('simple-git')(__dirname)
@@ -16,7 +16,6 @@ npm.load(function(err) {
 })
 
 // delete lock file created by npm
-console.log('Cleaning up...')
 try {
 var fs = require('fs'),
     lockFile = "./package-lock.json",
@@ -24,14 +23,17 @@ var fs = require('fs'),
 
 fs.closeSync(stopFunkFile)
 fs.unlinkSync(lockFile)
+console.log('Updates installed!')
 } catch (e) {
-    console.log('Nothing to clean up.')
+    console.log('No updates available.')
 }
-console.log('Defining global variables...')
+
+
+console.log('Bootstrapping..')
+
 global.Discord = require("discord.js")
 global.client = new Discord.Client()
 
-console.log('Initializing config...')
 try {
     global.config = JSON.parse(fs.readFileSync('./config.json'))
     global.token = config.token
@@ -44,14 +46,12 @@ try {
     process.exit()
 }
 
-console.log("Bootstrap complete.")
-console.log("Starting up...")
-
-console.log("Connecting to Discord...")
 try { client.login(token) } catch (e) {
     console.log("Something went wrong. Make sure your token is set correctly in config.json.")
     process.exit()
 }
+
+console.log("Bootstrap complete.")
 
 console.log("Handing off to main bot...")
 require("./bot.js")
