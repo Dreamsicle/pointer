@@ -17,13 +17,13 @@ npm.load(function(err) {
 
 // delete lock file created by npm
 try {
-var fs = require('fs'),
-    lockFile = "./package-lock.json",
-    stopFunkFile = fs.openSync(lockFile, 'r')
+    var fs = require('fs'),
+        lockFile = "./package-lock.json",
+        stopFunkFile = fs.openSync(lockFile, 'r')
 
-fs.closeSync(stopFunkFile)
-fs.unlinkSync(lockFile)
-console.log('Updates installed!')
+    fs.closeSync(stopFunkFile)
+    fs.unlinkSync(lockFile)
+    console.log('Updates installed!')
 } catch (e) {
     console.log('No updates available.')
 }
