@@ -3,8 +3,6 @@ client.on('ready', () => {
     console.log('Ready.')
 })
 
-var runtime = require('./runtime/runtime.js')
-
 client.on('message', message => {
     // handle prefix
     if (message.content.substring(0, prefix.length) !== prefix) { /* only process messages that have the prefix */
@@ -14,6 +12,9 @@ client.on('message', message => {
     }
 
     if (message.content === 'ping') {
-        runtime.cmd.ping('arg')
+        message.channel.send("", {embed: {
+            title: 'Pong!',
+            color: 16706817
+        }})
     }
 })
