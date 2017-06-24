@@ -28,11 +28,19 @@ client.on('message', message => {
                     color: 0x930e67
                 }})
             } catch (e) {
-                message.channel.send("", {embed: {
-                    title: 'Something went wrong.',
-                    description: 'Please check if I have the proper permissions! If that seems to be fine, here\'s the full error: \n' + e,
-                    color: 0xc5283d
-                }})
+                if (e == "TypeError: Unable to get property 'ban' of undefined or null reference") {
+                    message.channel.send("", {embed: {
+                        title: 'That person doesn\'t exist!',
+                        description: "Make sure you're mentioning them, e.g. `" + prefix + "ban @user#1337`.",
+                        color: 0xc5283d
+                    }})
+                } else {
+                    message.channel.send("", {embed: {
+                        title: 'Something went wrong.',
+                        description: 'Please check if I have the proper permissions! If that seems to be fine, here\'s the full error: \n' + e,
+                        color: 0xc5283d
+                    }})
+                }
             }
         } else {
             message.channel.send("", {embed: {
@@ -53,11 +61,19 @@ client.on('message', message => {
                     color: 0x930e67
                 }})
             } catch (e) {
-                message.channel.send("", {embed: {
-                    title: 'Something went wrong.',
-                    description: 'Please check if I have the proper permissions! If that seems to be fine, here\'s the full error: \n' + e,
-                    color: 0xc5283d
-                }})
+                if (e == "TypeError: Unable to get property 'kick' of undefined or null reference") {
+                    message.channel.send("", {embed: {
+                        title: 'That person doesn\'t exist!',
+                        description: "Make sure you're mentioning them, e.g. `" + prefix + "kick @user#1337`.",
+                        color: 0xc5283d
+                    }})
+                } else {
+                    message.channel.send("", {embed: {
+                        title: 'Something went wrong.',
+                        description: 'Please check if I have the proper permissions! If that seems to be fine, here\'s the full error: \n' + e,
+                        color: 0xc5283d
+                    }})
+                }
             }
         } else {
             message.channel.send("", {embed: {
