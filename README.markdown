@@ -1,4 +1,4 @@
-# pointer
+# Pointer
 Discord bot
 
 ## Installing & Updating
