@@ -17,4 +17,16 @@ client.on('message', message => {
             color: 0x930e67
         }})
     }
+
+    if (message.content.substring(0,3) === 'ban') {
+        message.content = message.content.substr(4) // remove 'ban' and the trailing space to just get the member to be beaned
+        if (message.author.hasPermission("BAN_MEMBERS")) {
+            console.log("ayy")
+        }
+        message.channel.send("", {embed: {
+            title: 'Press F to pay respects.',
+            color: 0x930e67
+        }})
+    }
+
 })
