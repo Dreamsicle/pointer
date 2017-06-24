@@ -53,7 +53,7 @@ client.on('message', message => {
 
     if (message.content.substring(0,4) === 'kick') {
         message.content = message.content.substr(5) // remove 'kick' and the trailing space to just get the member to be kek'd
-        if (message.member.hasPermission("KICK_MEMBERS")) {
+        if (message.member.hasPermission("KICK_MEMBERS") || message.author == message.mentions.users.first()) {
             try {
                 message.guild.member(message.mentions.users.first()).kick()
                 message.channel.send("", {embed: {
