@@ -1,4 +1,3 @@
-console.log("Success!")
 client.on('ready', () => {
     console.log('Ready.')
 })
@@ -14,6 +13,7 @@ client.on('message', message => {
 
     // function time
 
+    // create function to handle sending messages to avoid code clutter
     function sendMessage(embedTitle, embedDescription, messageType) {
         // messageType will probably be used for more than just color soon maybe
         if (messageType == undefined) {
