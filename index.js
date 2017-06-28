@@ -2,7 +2,12 @@ console.log('Checking for updates...')
 
 // git pull
 require('simple-git')(__dirname)
-     .pull()
+    .pull(function(err, update) {
+        if(update && update.summary.changes) {
+            console.log('Update downloaded. Restarting..')
+            require('child_process').exec('npm restart')
+        }
+    })
 
 // update modules
 var npm = require('npm')
@@ -25,7 +30,6 @@ try {
     fs.unlinkSync(lockFile)
     console.log('Updates installed!')
 } catch (e) {
-    console.log('No updates available.')
 }
 
 
