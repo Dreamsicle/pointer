@@ -19,7 +19,7 @@ client.on('message', message => {
         if (messageType == undefined) {
             var embedColor = 0x930e67
         }
-        if (messageType == 'purple') {
+        if (messageType == 'normal') {
             var embedColor = 0x930e67
         }
         if (messageType == 'error') {
@@ -34,7 +34,7 @@ client.on('message', message => {
 
 
     if (message.content === 'ping') {
-        sendMessage("Pong!", "I've recieved and can respond to your message.", "purple")
+        sendMessage("Pong!", "I've recieved and can respond to your message.", 'normal')
     }
 
     if (message.content.substring(0,3) === 'ban') {
@@ -42,31 +42,16 @@ client.on('message', message => {
         if (message.member.hasPermission("BAN_MEMBERS")) {
             try {
                 message.guild.member(message.mentions.users.first()).ban()
-                message.channel.send("", {embed: {
-                    title: 'Press F to pay respects.',
-                    color: 0x930e67
-                }})
+                sendMessage("Press F to pay respects.", "I've banned " + message.mentions.users.first() + ".", "normal")
             } catch (e) {
                 if (e == "TypeError: Unable to get property 'ban' of undefined or null reference") {
-                    message.channel.send("", {embed: {
-                        title: 'That person doesn\'t exist!',
-                        description: "Make sure you're mentioning them, e.g. `" + prefix + "ban @user#1337`.",
-                        color: 0xc5283d
-                    }})
+                    sendMessage("That person doesn't exist!", "Make sure you're mentioning them, e.g. `" + prefix + "ban @user#1337`.", 'error')
                 } else {
-                    message.channel.send("", {embed: {
-                        title: 'Something went wrong.',
-                        description: 'Please check if I have the proper permissions! If that seems to be fine, here\'s the full error: \n' + e,
-                        color: 0xc5283d
-                    }})
+                    sendMessage("Something went wrong.", "Please check if I have the proper permissions! If that seems to be fine, here's the full error: " + '\n```javascript' + e + '\n```', 'error')
                 }
             }
         } else {
-            message.channel.send("", {embed: {
-                title: "Sorry, but you don't have permission to do this.",
-                description: "Please check if you have permsission to ban members.",
-                color: 0xc5283d
-            }})
+            sendMessage("Sorry, but you don't have permission to do this.", "Please check if you have permsission to ban members.", 'error')
         }
     }
 
