@@ -11,11 +11,30 @@ client.on('message', message => {
         message.content = message.content.substr(prefix.length) /* remove the prefix from the message content (to keep the clutter of prefix + 'actual command' away) and carry on */
     }
 
-    if (message.content === 'ping') {
+
+    // function time
+
+    function sendMessage(embedTitle, embedDescription, messageType) {
+        // messageType will probably be used for more than just color soon maybe
+        if (messageType == undefined) {
+            var embedColor = 0x930e67
+        }
+        if (messageType == 'purple') {
+            var embedColor = 0x930e67
+        }
+        if (messageType == 'error') {
+            var embedColor = 0xc5283d
+        }
         message.channel.send("", {embed: {
-            title: 'Pong!',
-            color: 0x930e67
+            title: embedTitle,
+            description: embedDescription,
+            color: embedColor
         }})
+    }
+
+
+    if (message.content === 'ping') {
+        sendMessage("Pong!", "I've recieved and can respond to your message.", "purple")
     }
 
     if (message.content.substring(0,3) === 'ban') {
